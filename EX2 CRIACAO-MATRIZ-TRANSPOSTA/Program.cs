@@ -1,71 +1,80 @@
-﻿/* 
- 2. Criação de Matriz Transposta
-Escreva um programa que crie automaticamente uma matriz de números inteiros de dimensão 3x5.
-Em seguida, utilizando os elementos da matriz original, gere uma nova matriz de dimensão 5x3, representando sua matriz transposta. Ao final, exiba as duas matrizes.
- */
-
+﻿
 using System.Security.Cryptography;
 
 int linha = 3;
 int coluna = 5;
-int[,] m1 = new int[linha, coluna];
 
-void PopulaMatriz()
+int[,] m1 = new int[linha, coluna];
+int[,] m2 = new int[coluna, linha];
+int[,] m3 = new int[linha, coluna];
+
+void PopulaMatriz(int[,] matriz)
 {
-    Console.WriteLine($"Matriz:");
     for (int i = 0; i < linha; i++)
     {
         for (int j = 0; j < coluna; j++)
         {
-            m1[i, j] = RandomNumberGenerator.GetInt32(1, 6);
-            Console.Write($"{m1[i, j]} ");
+            matriz[i, j] = RandomNumberGenerator.GetInt32(1, 6);
         }
-        Console.WriteLine( );
     }
-    Console.WriteLine();
 }
 
-void GerarMatrizInversa()
+void GerarMatrizTransposta(int[,] matriz, int[,] matrizTransposta, int coluna, int linha)
 {
-    int[,] m2 = new int[coluna, linha];
-    Console.WriteLine($"Matriz Inversa:");
     for (int i = 0; i < coluna; i++)
     {
-        for(int j =0; j < linha; j++)
+        for (int j = 0; j < linha; j++)
         {
-            m2[i, j] = m1[j, i];
-            Console.Write($"{m2[i, j]} ");
+            matrizTransposta[i, j] = matriz[j, i];
         }
-        Console.WriteLine();
     }
-    Console.WriteLine();
 }
 
-void EspelhaMatriz()
+void EspelhaMatriz(int[,] matriz, int[,] matrizEspelhada, int linha, int coluna)
 {
-    int[,] m3 = new int[linha,coluna];
     int contador = 0;
     int contador2 = 0;
 
-    Console.WriteLine($"Matriz Espelhada:");
-    for (int i=linha-1; i>=0; i--)
+    for (int i = linha - 1; i >= 0; i--)
     {
         contador2 = 0;
-        for (int j=coluna-1; j>=0; j--)
+
+        for (int j = coluna - 1; j >= 0; j--)
         {
-            m3[contador, contador2] = m1[i,j];
-            Console.Write($"{m3[contador, contador2]} ");
+            matrizEspelhada[contador, contador2] = matriz[i, j];
             contador2++;
-            
         }
+
         contador++;
+    }
+}
+
+void ImprimeMatriz(int[,] matriz, int linha, int coluna)
+{
+    for (int i = 0; i < linha; i++)
+    {
+        for (int j = 0; j < coluna; j++)
+        {
+            Console.Write($"{matriz[i, j]} ");
+        }
+
         Console.WriteLine();
     }
+
+    Console.WriteLine();
 }
 
 
 
+PopulaMatriz(m1);
+GerarMatrizTransposta(m1, m2, coluna, linha);
+EspelhaMatriz(m1, m3, linha, coluna);
 
-PopulaMatriz();
-GerarMatrizInversa();
-EspelhaMatriz();
+Console.WriteLine("Matriz Original (3x5):");
+ImprimeMatriz(m1, linha, coluna);
+
+Console.WriteLine("Matriz Transposta (5x3):");
+ImprimeMatriz(m2, coluna, linha);
+
+Console.WriteLine("Matriz Espelhada (3x5):");
+ImprimeMatriz(m3, linha, coluna);
