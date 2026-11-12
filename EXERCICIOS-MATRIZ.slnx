@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="EX2 CRIACAO-MATRIZ-TRANSPOSTA/EX2 CRIACAO-MATRIZ-TRANSPOSTA.csproj" />
   <Project Path="EX3 SOMA DOS ELEMENTOS MATRIZ/EX3 SOMA DOS ELEMENTOS MATRIZ.csproj" Id="5cf985a9-3b39-499f-a766-c67a02ef49f6" />
-  <Project Path="EXERCICIOS-MATRIZ/EXERCICIOS-MATRIZ.csproj" />
+  <Project Path="EX4 BOLETIM/EX4 BOLETIM.csproj" Id="64b5db7e-466a-4a0d-92ae-c123b2f8b99f" />
+  <Project Path="EX1 INVERTER MATRIZ/EX1 INVERTER MATRIZ.csproj" />
 </Solution>
