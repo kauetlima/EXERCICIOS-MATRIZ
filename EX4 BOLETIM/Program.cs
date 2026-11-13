@@ -13,7 +13,7 @@ Ao final, apresente o boletim completo, contendo as disciplinas, as notas dos qu
 int colunaString = 2;
 int linhafloat = 0;
 int colunafloat = 5;
-
+float media = 0;
 
 Console.WriteLine("Quantas Materias você tem na sua escola :");
 int linhas = int.Parse(Console.ReadLine());
@@ -22,7 +22,7 @@ Console.Clear();
 string[,] matrizMaterias = new string[linhas, colunaString];
 float[,] matrizNotas = new float[linhas, 5];
 
-void NotaMateria(string[,] matrizMaterias, float[,] matrizNotas, int linhas, int colunaFloat)
+void NotasMaterias(string[,] matrizMaterias, float[,] matrizNotas, int linhas, int colunaFloat)
 {
     float soma = 0;
     float media = 0;
@@ -30,6 +30,7 @@ void NotaMateria(string[,] matrizMaterias, float[,] matrizNotas, int linhas, int
     for (int i = 0; i < linhas; i++)
     {
         soma = 0;
+        Console.Clear();
         Console.WriteLine($"Digite a suas notas para a seguinte materia: {matrizMaterias[i, 0]}");
         for (int j = 0; j < colunaFloat - 1; j++)
         {
@@ -37,23 +38,27 @@ void NotaMateria(string[,] matrizMaterias, float[,] matrizNotas, int linhas, int
             matrizNotas[i, j] = float.Parse(Console.ReadLine());
             soma += matrizNotas[i, j];
         }
-        media = soma / 4;
-        matrizNotas[i, colunaFloat - 1] = media;
-
-        if (media >= 7)
-        {
-            matrizMaterias[i, 1] = "Aprovado";
-        }
-        else if (media >= 4)
-        {
-            matrizMaterias[i, 1] = "Recuperação";
-        }
-        else
-        {
-            matrizMaterias[i, 1] = "Reprovado";
-        }
-
+        CalculaMedia(matrizMaterias,media,soma,colunaFloat,i);
         Console.Clear();
+    }
+}
+
+void CalculaMedia(string[,] matrizMaterias, float media,float soma, int colunaFloat,int i)
+{
+    media = soma / 4;
+    matrizNotas[i, colunaFloat - 1] = media;
+
+    if (media >= 7)
+    {
+        matrizMaterias[i, 1] = "Aprovado";
+    }
+    else if (media >= 4)
+    {
+        matrizMaterias[i, 1] = "Recuperação";
+    }
+    else
+    {
+        matrizMaterias[i, 1] = "Reprovado";
     }
 }
 
@@ -92,5 +97,5 @@ void ImprimeBoletim(string[,] matrizMaterias, float[,] matrizNotas, int linhas, 
 }
 
 PreencheMaterias(matrizMaterias, linhas);
-NotaMateria(matrizMaterias, matrizNotas, linhas, colunafloat);
+NotasMaterias(matrizMaterias, matrizNotas, linhas, colunafloat);
 ImprimeBoletim(matrizMaterias, matrizNotas, linhas, colunafloat);
